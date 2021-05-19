@@ -1,0 +1,21 @@
+{
+  "params":
+  {
+     "local_server": "True",
+     "local_uri": "mysql://root:@localhost/blogster",
+     "prod_uri": "mysql://root:@localhost/blogster",
+     "fb_url": "https://facebook.com/blogster1",
+     "tw_url": "https://twitter.com/blogster1",
+     "gh_url": "https://github.com/blogster1",
+    "blog_name":"Blogster",
+    "tag_line": "The Blogs which make you Happy",
+    "gmail_user":"email_id",
+    "gmail_password":"password",
+    "about_text": "Hi i am a Coder",
+    "no_of_posts": 4,
+    "admin_user": "username",
+    "admin_password": "password",
+    "uploader_location": "C:\\Users\\user\\PycharmProjects\\pythonProject2\\static\\img",
+    "secret-key" : "super-secret-key"
+  }
+}

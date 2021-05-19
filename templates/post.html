@@ -1,0 +1,138 @@
+ {% extends "layout.html" %}
+
+ {% block body %}
+
+  <!-- Page Header -->
+
+ 
+  {%set fname='img/' + post.img_file%}
+  <header class="masthead" style="background-image: url('{{url_for('static', filename=fname)}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ post.title }}</h1>
+            <h2 class="subheading">{{post.tagline}}</h2>
+            <span class="meta">Posted by
+              <a href="/about">{{post.author}}</a>
+              {{post.date}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category,message in messages %}
+      <div class="alert alert-{{category}} alert-dismissible fade show" roles="alert">
+      {{ message }}
+      <button type="button", class="close" data-dismiss="alert" arial-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-lg-8 col-md-10 mx-auto">
+             {{post.content | safe}}
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+
+
+  <div id="comments" class="container col-lg-7 col-md-10 mx-auto">
+            
+            <form action="/post/{{post.slug}}" method="post"><input type="hidden" name="commenting">
+                <div class="form-group">
+                    <h2><label for="inputAddress">Post a comment</label></h2>
+
+                    <input type="text" style="height: 40px; width:280px; "  name="author" class="form-control"  id='author' required data-validation-required-message  placeholder="Write your name...">
+                    <br>
+                    <textarea type="text" class="form-control" id='body' name='body' 
+                    required data-validation-required-message 
+                    placeholder="Write a comment..."></textarea>
+                </div>
+                <input type="hidden" name="path" value="/blogpost/vlc_media">
+                <input type="hidden" name="blogSlug" value="vlc_media">
+                <input type="hidden" name="parent_id" value="">
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+        
+            
+ </div>
+        
+  <div class="container col-lg-7 col-md-10 mx-auto">
+            {%set fname=n%}
+            <h3>Comments ({{fname}})</h3>
+        
+            
+            {% for comment in comments %}
+            
+                  <br>
+                  <div class="d-flex flex-row"> <img src="{{url_for('static',filename='img/default.png')}}" height="60" width="60" class="rounded-circle">
+                    <div class="d-flex flex-column ms-2">
+                        <b style="color:#0085a1">{{comment.author}} <span class="badge badge-secondary">{{comment.date}}</span> </b>
+                         {{comment.body}} 
+                    </div>
+                 </div>
+            
+            <br>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#replyBox{{comment.s_no}}" aria-expanded="false" aria-controls="replyBox{{comment.s_no}}">
+             Reply
+            </button>
+            <div class="collapse" id="replyBox{{comment.s_no}}">
+            <div>
+               <form action="/post/{{post.slug}}" method="post"><input type="hidden" name="commenting_replies">
+                <div class="form-group">
+                    <h2><label for="inputAddress">Post a reply</label></h2>
+
+                    <input type="text" style="height: 40px; width:280px; "  name="r_author" class="form-control"  id='r_author' required data-validation-required-message  placeholder="Write your name...">
+                    <br>
+                    <textarea type="text" class="form-control" id='body' name='body' 
+                    required data-validation-required-message 
+                    placeholder="Write a Reply..."></textarea>
+                </div>
+                <input type="hidden" name="path" value="/blogpost/vlc_media">
+                <input type="hidden" name="blogSlug" value="vlc_media">
+                <input type="hidden" name="parent_id" value="{{comment.s_no}}">
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+            </div>
+            </div>
+
+           <div class="container col-lg-9 col-md-11 mx-auto">
+                {% for reply in replies[comment.s_no] %}
+                <div class="my-1">
+                  <div class="d-flex flex-row"> <img src="{{url_for('static',filename='img/default.png')}}" height="40" width="40" class="rounded-circle">
+                    <div class="d-flex flex-column ms-2">
+                        <b style="color:#0085a1">{{reply.r_author}} <span class="badge badge-secondary">{{reply.date}}</span> </b>
+                         {{reply.body}}
+                    </div>
+                 </div>
+                 <br>  
+                </div>
+                {% endfor %}
+           </div>
+
+
+           {% endfor %}
+
+
+
+  </div>
+
+   {% endblock %}

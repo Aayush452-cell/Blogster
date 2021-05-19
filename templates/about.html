@@ -1,0 +1,31 @@
+ {% extends "layout.html" %}
+
+ {% block body %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{url_for('static', filename='img/about-bg.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>About Me</h1>
+            <span class="subheading">This is what I do.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Hey there , It's Aayush on the other side. I am sophomore at IIIT agartla pursuing B Tech in Computer Science And Engineering.</p>
+        <p>This is my blogging site which i have developed using Flask microframework. I love to write about technical stuffs and CSE related subjects.</p>
+        <p>Hope you like my work . If you have any suggestions , do comment or you can also contact me in the contact section.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
