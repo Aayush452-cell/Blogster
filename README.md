@@ -9,4 +9,5 @@ Link - https://www.blogster.ninja/
 ![image](https://user-images.githubusercontent.com/68737300/125558096-eed0d2a8-f71b-4ca8-948d-6a459a05f945.png)
 
 Feature Are - Rsponsive Design made with BootStrap with customized admin panel with rich text editor and Comment System implemented from Scratch.
+              Other Features such as Dark and Light Mode , Category Wise Blogs with paginations .
 
